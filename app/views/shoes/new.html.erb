@@ -1,0 +1,65 @@
+
+
+
+
+
+
+
+<div class="row">
+<div class="upload-not-logged col-md-6" >
+ <p class="lead center center"></p>
+  <div class="row">
+    <div class='col-md-9 home-div'>
+      <div class="home-info lead well use" style="background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(195, 218, 247)); background-color: rgb(195, 218, 247);">
+        <h3 class="lead aboutbox">Register to Upload!</h3>
+        <div>
+          <p class="hometext">1. Shoe name , size , price, condition.</p>
+          <p class="hometext">2. Comment shoe with your email for purchase interest.</p>
+          <p class="hometext">3. Wait for response and negotiate price</p>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<% if signed_in? %>
+
+
+<div class="row">
+<div class="col-md-3">
+	<h4>Welcome <%= current_user.first_name %> </h4>
+
+	<h3>Upload a Photo</h3>
+	<% if flash[:message] %>
+		<p><%= flash[:message] %></p>
+	<% end %>
+	<!-- Make sure multipart: true is in your form to allow file upload -->
+<%= simple_form_for(@shoe, :defaults => { :wrapper_html => {:class=>"form-group"}, :input_html => { :class => "form-control" } }) do |f| %>		
+		<%= f.input :name, label: "Name:", class: "col-md-3"%>
+		<!-- file_field for file upload -->
+		<%= f.file_field :image %>
+		<%= f.button :submit, value: "Upload", class: "btn btn-primary" %>
+	<% end %>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<h3>Gallery</h3>
+<% @shoes.each do |shoe| %>
+	<div class="col-md-3">
+		<h6><%= shoe.name %></h6>
+		<a href="<%= shoe_path(shoe) %>">
+			<!-- photo.image_url gets the url using the carrierwave gem -->
+			<%= image_tag shoe.image_url.to_s, width: 200 %>
+		</a>
+	</div>
+	<% end %>
+
+<% end %>
+</div>
+</div>

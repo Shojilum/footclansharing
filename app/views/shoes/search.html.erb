@@ -1,0 +1,11 @@
+
+<h3>Resutls</h3>
+<% @shoes.each do |shoe| %>
+	<div class="col-md-3">
+		<h6><%= shoe.name %></h6>
+		<a href="<%= shoe_path(shoe) %>">
+			<!-- photo.image_url gets the url using the carrierwave gem -->
+			<%= image_tag shoe.image_url.to_s, width: 200 %>
+		</a>
+	</div>
+<% end %>

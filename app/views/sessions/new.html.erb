@@ -1,0 +1,11 @@
+<% provide(:title, 'Log in') %>
+<h1>Log In</h1>
+<%= render "layouts/error_printer" %>
+<div class="col-md-6">
+<%= simple_form_for(@user, url: sessions_path, :defaults => { :wrapper_html => {:class=>"form-group"}, :input_html => { :class => "form-control" } }) do |form_field| %>	
+	<%= form_field.input :email, label: 'Email', class: "col-md-6" %>
+	<%= form_field.input :password, label: 'Passowrd' %>
+	<%= form_field.button :submit, value:'Log In', class: "btn btn-primary" %>
+<% end %>
+</div>
+

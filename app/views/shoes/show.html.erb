@@ -1,0 +1,18 @@
+<h1><%= @shoe.name %></h1>
+<%= image_tag @shoe.image_url.to_s %>
+<h3>Comment</h3>
+<% if flash[:message] %>
+	<p><%= flash[:message] %></p>
+<% end %>
+<% if signed_in? %>
+	<%= simple_form_for [@shoe, @comment] do |f| %>
+		<%= f.text_area :comment %><br>
+		<%= f.button :submit, value: "Leave Comment", class: "btn btn-primary" %>
+	<% end %>
+<% end %>
+<% @comments.each do |comment| %>
+	<h5><%= comment.user.first_name %></h5>
+	<p><%= comment.comment %></p>
+<% end %>
+
+<%= link_to "destroy image", @shoe ,method: :delete, image: {confirm: 'Are you sure?'}if admin? %>

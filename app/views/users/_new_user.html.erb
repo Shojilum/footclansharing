@@ -1,0 +1,14 @@
+<%= render "layouts/error_printer" %>
+<div class="col-md-6">
+<%= simple_form_for(@user, :defaults => { :wrapper_html => {:class=>"form-group"}, :input_html => { :class => "form-control" } }) do |f| %>	
+
+
+<%= f.input :first_name, label: "First name" %>
+	<%= f.input :last_name, label: "Last name" %>
+	<%= f.input :email, label: "Email"%>
+	<%= f.input :password, label: "Password" %>
+	<%= f.input :password_confirmation, label: "Confirm Password" %>
+	<%= f.button :submit, value: "Register", class: 'btn btn-primary' %>
+<% end %>
+</div>
+
